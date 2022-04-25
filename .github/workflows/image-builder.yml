@@ -2,7 +2,7 @@ name: Build and Publish
 
 on:
   push:
-    branches: master
+    branches: "master"
 
 jobs:
   build-and-push-docker-image:
@@ -24,6 +24,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.CONTAINER_REGISTRY_PAT }} 
+          repository: ${{ github.actor }}/contract-helper 
 
       - name: Build and push
         id: docker-build
