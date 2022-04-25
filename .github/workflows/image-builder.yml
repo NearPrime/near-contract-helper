@@ -23,7 +23,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: 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 #${{ secrets.GHCR_PAT }} 
+          password: ${{ secrets.CONTAINER_REGISTRY_PAT }} 
       
       - name: Cache Docker layers
         uses: actions/cache@v2
