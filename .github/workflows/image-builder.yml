@@ -42,7 +42,7 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            ${{ steps.login-ecr.outputs.registry }}/near-for-primelab/node:${{ github.sha }}
+            gcr.io/contract-helper:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
 
