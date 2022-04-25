@@ -24,14 +24,6 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.CONTAINER_REGISTRY_PAT }} 
-      
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-v5-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-v5-
 
       - name: Build and push
         id: docker-build
@@ -42,16 +34,6 @@ jobs:
           file: Dockerfile
           push: true
           tags: latest
-          registry: ghcr.io
-          # gcr.io/contract-helper:${{ github.sha }}
-          # cache-from: type=local,src=/tmp/.buildx-cache
-          # cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-
-      # - name: Move cache
-      #   run: |
-      #       rm -rf /tmp/.buildx-cache
-      #       mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-      #   continue-on-error: true
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
