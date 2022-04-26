@@ -23,7 +23,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.CONTAINER_REGISTRY_PAT }} 
+          password: ${{ secrets.GITHUB_TOKEN }} 
           repository: ${{ github.actor }}/contract-helper 
 
       - name: Build and push
